@@ -1,10 +1,10 @@
-import edu.princeton.cs.algs4.Stack;
+import edu.princeton.cs.algs4.*;
 /**
 *  Here is only the execrise aboout prefix and infix.
 *  Computer usually use infix expression to calculate.
 *  Here is basically i know as a new beginner.
 */
-public class PrefixIntoInfix
+public class InfixToPrefix
 {
 	public static void main(String[] args)
 	{
@@ -21,11 +21,11 @@ public class PrefixIntoInfix
 			reverseStack.push(character);
 		}
 		// now pop out the character from reverseStack. now we got the character of infixExpress in a reverse way
+		System.out.print("the reverse stack is " + reverseStack + "\n");
 		while(!reverseStack.isEmpty())
 		{	
 			// get one character out of the reverseStack
 			String str = reverseStack.pop();
-
 			// if the str equals ")", then push it into the operator stack
 			if (str.equals(")"))
 			{
@@ -38,20 +38,21 @@ public class PrefixIntoInfix
 			*      3.if this operator at least have the weight as the top stack element, then push it into the stack and end this step.
 			*      4.otherwise, operator keeps poping out of the stack operators, util meets the three condition above, then push it into the stack.
 			*/      
-			else if (str.equals("+") || str.equals('-') || str.equals("*") || str.equals("/"))
+			else if (str.equals("+") || str.equals("-") || str.equals("*") || str.equals("/"))
 			{
 				boolean isRightParen;
 				boolean isWeighterOperator;
-				int i = 0;
+				int j = 0;
 				do
 				{
-					if (i != 0)
+					// this section`s function is to pop out the rest operators at the end
+					if (j != 0)
 					{
 						values.push(operators.pop());
 					}
-					i++;
+					j++;
 					isRightParen = false;
-					isWeighterOperator =false
+					isWeighterOperator = false;
 					if (!operators.isEmpty())
 					{
 						String stackTop = operators.peek();
@@ -70,11 +71,11 @@ public class PrefixIntoInfix
 						operators.push(str);
 						break;
 					}
-				} while (!(isEmpty || isRightParen || isWeighterOperator))
+				} while (!(operators.isEmpty() || isRightParen || isWeighterOperator));
 			}
 
 			// if the str equals "(", then pop out the charactor out of the operators until it meets the ")", and toss the ")"
-			else if (str.equals(")"))
+			else if (str.equals("("))
 			{
 				String poppedString = operators.pop();
 				while(!poppedString.equals(")"))
