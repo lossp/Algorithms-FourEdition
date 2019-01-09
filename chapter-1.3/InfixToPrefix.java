@@ -1,8 +1,9 @@
 import edu.princeton.cs.algs4.*;
 /**
 *  Here is only the execrise aboout prefix and infix.
-*  Computer usually use infix expression to calculate.
+*  Computer usually use infix expression for calculating.
 *  Here is basically i know as a new beginner.
+*  turn infix express to prefix expression.
 */
 public class InfixToPrefix
 {
